@@ -16,9 +16,6 @@ exports.searchStranger = (req, res) => {
 
   // if room is not ""
   // delete user in the array
-  if (room) {
-    deleteUser(userId);
-  }
 
   // will return "" if no match
   // "" will be handled in client side

@@ -7,7 +7,8 @@ const users = [];
 
 exports.addUser = (userId) => {
   // this function will add user if user is not in the array yet
-  const user = users.find((u) => u.user === userId);
+  const user = users.find((u) => u.userId === userId);
+
   if (!user) {
     users.push({
       userId: userId,
@@ -34,9 +35,13 @@ exports.matchUser = (userId) => {
   // to match with user id
 
   // set matched with for both users
-  const index = users.findIndex((u) => !u.matchedWith);
+
+  // this means finding the first user in the array but not me
+  const index = users.findIndex((u) => !u.matchedWith && u.userId !== userId);
 
   // only happen if it found a user to match
+
+  console.log(users);
   if (index > -1) {
     users[index].matchedWith = userId;
     const index2 = users.findIndex((u) => u.userId === userId);
