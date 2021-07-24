@@ -5,17 +5,17 @@ const users = [];
 // matchedWith: "" - the other person's id
 // roomId: ""
 
+exports.isUser = (userId) => {
+  return users.find((u) => u.userId === userId) ? true : false;
+};
+
 exports.addUser = (userId) => {
   // this function will add user if user is not in the array yet
-  const user = users.find((u) => u.userId === userId);
-
-  if (!user) {
-    users.push({
-      userId: userId,
-      matchedWith: "",
-      roomId: "",
-    });
-  }
+  users.push({
+    userId: userId,
+    matchedWith: "",
+    roomId: "",
+  });
 };
 
 exports.deleteUser = (userId) => {
@@ -41,7 +41,6 @@ exports.matchUser = (userId) => {
 
   // only happen if it found a user to match
 
-  console.log(users);
   if (index > -1) {
     users[index].matchedWith = userId;
     const index2 = users.findIndex((u) => u.userId === userId);
@@ -59,4 +58,23 @@ exports.matchUser = (userId) => {
   }
 
   return "";
+};
+
+// get room of a user if they are a user
+exports.getRoomOfUser = (userId) => {
+  return users.find((u) => u.userId === userId).roomId;
+};
+
+exports.stopSearching = (userId) => {
+  const user = users.find((u) => u.userId === userId);
+
+  if (user && user.matchedWith !== "") {
+    const stranger = users.find((u) => u.userId === user.matchedWith);
+
+    stranger.matchedWith = "";
+    stranger.roomId = "";
+  }
+
+  user.matchedWith = "";
+  user.roomId = "";
 };
