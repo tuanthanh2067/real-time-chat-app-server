@@ -71,8 +71,10 @@ exports.stopSearching = (userId) => {
   if (user && user.matchedWith !== "") {
     const stranger = users.find((u) => u.userId === user.matchedWith);
 
-    stranger.matchedWith = "";
-    stranger.roomId = "";
+    if (stranger) {
+      stranger.matchedWith = "";
+      stranger.roomId = "";
+    }
   }
 
   user.matchedWith = "";
