@@ -7,8 +7,6 @@ exports.chat = (io, socket) => {
     socket.roomId = roomId;
     socket.join(roomId);
 
-    console.log(`${socket.userId} joins ${socket.roomId}`);
-
     io.in(roomId).emit("notification", {
       title: `${userId} just joined the room`,
     });
@@ -21,15 +19,9 @@ exports.chat = (io, socket) => {
     });
   });
 
-  socket.on("leave", () => {
-    socket.to(socket.roomId).emit("notification", {
-      title: `${socket.userId} just left the room`,
-    });
-  });
-
   socket.on("disconnect", () => {
     socket.to(socket.roomId).emit("notification", {
-      title: `${socket.userId} just disconnected from the server`,
+      title: `${socket.userId} just disconnected from the room`,
     });
   });
 };
