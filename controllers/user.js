@@ -6,6 +6,7 @@ const {
   isUser,
   getRoomOfUser,
   stopSearching,
+  deleteUser,
 } = require("../user");
 
 exports.signup = (req, res) => {
@@ -44,6 +45,12 @@ exports.stopSearching = (req, res) => {
   // set the other person's matchedWith and room id to ""
 
   stopSearching(req.body.userId);
+
+  return res.status(200);
+};
+
+exports.deleteUser = (req, res) => {
+  deleteUser(req.params.userId);
 
   return res.status(200);
 };

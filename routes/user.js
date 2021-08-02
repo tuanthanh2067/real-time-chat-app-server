@@ -3,6 +3,7 @@ const {
   signup,
   searchStranger,
   stopSearching,
+  deleteUser,
 } = require("../controllers/user");
 
 router.get("/", (req, res) => {
@@ -14,5 +15,7 @@ router.get("/sign-up", signup);
 router.post("/search", searchStranger);
 
 router.post("/stop", stopSearching);
+
+router.delete("/delete/:userId", deleteUser);
 
 module.exports = router;

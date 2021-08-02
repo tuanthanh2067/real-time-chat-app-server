@@ -28,6 +28,8 @@ exports.deleteUser = (userId) => {
   if (index > -1) {
     users.splice(index, 1);
   }
+
+  console.log(users);
 };
 
 exports.matchUser = (userId) => {
